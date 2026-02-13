@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Valentine Surprise</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      .pixelify-sans {
+        font-family: "Pixelify Sans", sans-serif;
+      }
+
+      /* animation */
+      @keyframes float {
+        0% {
+          transform: translateY(0px);
+          filter: drop-shadow(0 5px 15px rgba(219, 39, 119, 0.2));
+        }
+        50% {
+          transform: translateY(-20px);
+          filter: drop-shadow(0 25px 25px rgba(219, 39, 119, 0.4));
+        }
+        100% {
+          transform: translateY(0px);
+          filter: drop-shadow(0 5px 15px rgba(219, 39, 119, 0.2));
+        }
+      }
+
+      .animate-float {
+        animation: float 3s ease-in-out infinite;
+      }
+
+      /* animate 2 */
+      @keyframes retro-pulse {
+        0% {
+          transform: scale(1) rotate(0deg);
+          filter: brightness(100%) drop-shadow(0 0 0px #ff0080);
+        }
+        25% {
+          transform: scale(1.05) rotate(2deg);
+          filter: brightness(120%) drop-shadow(0 0 10px #ff0080);
+        }
+        50% {
+          transform: scale(1) rotate(0deg);
+          filter: brightness(100%) drop-shadow(0 0 0px #ff0080);
+        }
+        75% {
+          transform: scale(1.05) rotate(-2deg);
+          filter: brightness(120%) drop-shadow(0 0 10px #ff0080);
+        }
+        100% {
+          transform: scale(1) rotate(0deg);
+          filter: brightness(100%) drop-shadow(0 0 0px #ff0080);
+        }
+      }
+
+      .animate-pixel-glow {
+        animation: retro-pulse 2s infinite ease-in-out;
+      }
+
+      /* animation-3 */
+      /* Animation to slide text up and fade in */
+      @keyframes slideUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Simple fade in for the buttons */
+      @keyframes fadeIn {
+        to {
+          opacity: 1;
+        }
+      }
+
+      .animate-slide-up {
+        animation: slideUp 0.8s ease-out forwards;
+      }
+
+      .animate-fade-in {
+        animation: fadeIn 1s ease-out forwards;
+      }
+    </style>
+  </head>
+
+  <!-- body start -->
+  <body class="pixelify-sans bg-pink-50">
+    <header
+      class="w-full max-w-[1440px] mx-auto flex items-center justify-center min-h-screen"
+    >
+      <div
+        id="envelope-section"
+        class="tracking-widest flex flex-col items-center justify-center cursor-pointer animate-float"
+      >
+        <div class="w-[250px] h-[250px]">
+          <img
+            id="letter-img"
+            class="max-w-full h-auto transition-transform hover:scale-105"
+            src="/assets/letter.jpeg"
+            alt="Letter"
+          />
+        </div>
+        <h1
+          class="text-6xl font-bold my-10 tracking-tight text-pink-700 uppercase"
+        >
+          See !!!!! What's Inside
+        </h1>
+      </div>
+
+      <!-- valentine section -->
+     <div id="valentine-section" class="hidden flex-col items-center justify-center text-center">
+    <h1 class="text-6xl font-bold text-pink-600 mb-6 leading-tight drop-shadow-lg">
+        <span class="block opacity-0 animate-slide-up text-pink-400" style="animation-delay: 0.2s;">
+            Tanjir Mahbub
+        </span>
+        <span class="block opacity-0 animate-slide-up" style="animation-delay: 0.8s;">
+            Will you be my Valentine? ❤️
+        </span>
+    </h1>
+
+    <div class="flex gap-4 items-center justify-center relative min-h-[200px] w-full opacity-0 animate-fade-in" style="animation-delay: 1.5s;">
+        <button id="yes-btn" class="bg-green-500 hover:bg-green-600 text-white px-10 py-4 rounded-full font-bold transition-all text-xl z-10 hover:scale-110 active:scale-95 shadow-lg shadow-green-500/50">
+            Yes!
+        </button>
+
+        <button id="no-btn" class="bg-red-500 text-white px-10 py-4 rounded-full font-bold transition-all text-xl shadow-lg shadow-red-500/50">
+            No
+        </button>
+    </div>
+</div>
+
+      <!-- celebration -->
+      <div
+        id="celebration-section"
+        class="hidden flex-col items-center justify-center text-center"
+      >
+        <h1 class="text-4xl font-bold text-pink-600 mb-6">
+          Yay! See you on the 14th! 💖
+        </h1>
+        <div class="w-[350px] h-[350px] overflow-hidden rounded-lg shadow-xl">
+          <div
+            class="tenor-gif-embed"
+            data-postid="6180200097750952521"
+            data-share-method="host"
+            data-aspect-ratio="1"
+            data-width="100%"
+          >
+            <a href="https://tenor.com/view/besos-gif-6180200097750952521"
+              >Besos GIF</a
+            >from <a href="https://tenor.com/search/besos-gifs">Besos GIFs</a>
+          </div>
+          <script
+            type="text/javascript"
+            async
+            src="https://tenor.com/embed.js"
+          ></script>
+        </div>
+      </div>
+    </header>
+
+    <!-- javascript -->
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const envelopeSection = document.getElementById("envelope-section");
+
+        envelopeSection.addEventListener("mousemove", (e) => {
+          const sparkle = document.createElement("div");
+          sparkle.innerHTML = "✨";
+          sparkle.classList.add(
+            "fixed",
+            "pointer-events-none",
+            "text-sm",
+            "z-50",
+          );
+
+          // Position the sparkle at the mouse coordinates
+          sparkle.style.left = e.clientX + "px";
+          sparkle.style.top = e.clientY + "px";
+
+          // Add a random slight movement
+          const destinationX = (Math.random() - 0.5) * 100;
+          const destinationY = (Math.random() - 0.5) * 100;
+
+          sparkle.animate(
+            [
+              { transform: "translate(0, 0) scale(1)", opacity: 1 },
+              {
+                transform: `translate(${destinationX}px, ${destinationY}px) scale(0)`,
+                opacity: 0,
+              },
+            ],
+            {
+              duration: 1000,
+              easing: "ease-out",
+            },
+          );
+
+          document.body.appendChild(sparkle);
+          setTimeout(() => sparkle.remove(), 1000);
+        });
+
+        const valentineSection = document.getElementById("valentine-section");
+        const letterImg = document.getElementById("letter-img"); // Matches HTML ID now
+
+        const yesBtn = document.getElementById("yes-btn");
+        const noBtn = document.getElementById("no-btn");
+
+        if (letterImg) {
+          letterImg.onclick = function () {
+            envelopeSection.classList.add("hidden");
+            valentineSection.classList.remove("hidden");
+            valentineSection.classList.add("flex");
+          };
+        }
+
+        let yesScale = 1;
+
+        noBtn.addEventListener("mouseover", () => {
+          // Randomly move the No button
+          const x = Math.random() * (window.innerWidth - 150);
+          const y = Math.random() * (window.innerHeight - 150);
+
+          noBtn.style.position = "fixed";
+          noBtn.style.left = `${x}px`;
+          noBtn.style.top = `${y}px`;
+
+          // Make Yes button bigger
+          yesScale += 0.3;
+          yesBtn.style.transform = `scale(${yesScale})`;
+        });
+
+        function createHeart() {
+          const heart = document.createElement("div");
+          heart.innerHTML = "❤️";
+          heart.classList.add(
+            "fixed",
+            "top-[-10%]",
+            "text-2xl",
+            "pointer-events-none",
+            "z-50",
+          );
+
+          // Random horizontal position
+          heart.style.left = Math.random() * 100 + "vw";
+
+          // Random fall duration (3-5 seconds)
+          const duration = Math.random() * 2 + 3;
+          heart.style.animation = `fall ${duration}s linear forwards`;
+
+          document.body.appendChild(heart);
+
+          // Remove heart after it falls
+          setTimeout(() => {
+            heart.remove();
+          }, duration * 1000);
+        }
+
+        // Add the CSS for the falling effect
+        const style = document.createElement("style");
+        style.innerHTML = `
+    @keyframes fall {
+        to {
+            transform: translateY(110vh) rotate(360deg);
+        }
+    }
+`;
+        document.head.appendChild(style);
+
+        // button reactivity
+
+        const celebrationSection = document.getElementById(
+          "celebration-section",
+        );
+
+        yesBtn.onclick = () => {
+          // Hide the question section
+          valentineSection.classList.add("hidden");
+          valentineSection.classList.remove("flex");
+
+          // Show the celebration/GIF section
+          celebrationSection.classList.remove("hidden");
+          celebrationSection.classList.add("flex");
+
+          // Optional: Add some confetti or a nice console message
+          console.log("Success! Happy Valentine's Day!");
+
+          // Start heart rain every 300ms
+          setInterval(createHeart, 300);
+        };
+      });
+    </script>
+  </body>
+</html>
